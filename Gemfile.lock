@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/AlexanderPavlenko/logmaster.git
+  revision: 9cb12587148ed595897d166f1fce076fc837c678
+  specs:
+    logmaster (0.1.5)
+      pony
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,8 +83,6 @@ GEM
     json (1.8.3)
     jwt (1.5.1)
     log4r (1.1.10)
-    logmaster (0.1.5)
-      pony
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
@@ -153,20 +158,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  btcruby (= 1.1.1)!
-  bundler (~> 1.0)
+  btcruby (= 1.1.1)
   byebug
   factory_girl
   faye-websocket!
   github_api (= 0.11.3)
   goliath!
   hashie
-  httparty!
+  httparty
   jeweler (~> 2.0.1)
-  logmaster (= 0.1.5)!
-  redis!
+  logmaster!
+  redis
   rspec
-  ruby-hmac!
+  ruby-hmac
   satoshi-unit (>= 0.1.8)!
   sequel!
   socket.io-client-simple!

@@ -25,7 +25,6 @@ end
 
 group :development do
   gem 'byebug'
-  gem 'bundler', '~> 1.0'
   gem 'jeweler', '~> 2.0.1'
   gem 'github_api', '0.11.3'
 end
