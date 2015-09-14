@@ -241,8 +241,7 @@ module StraightServer
         begin
           uri = URI.parse("#{url}#{url.include?('?') ? '&' : '?'}#{order.to_http_params}#{callback_data}")
           unless uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
-            StraightServer.logger.info "Looks like callback_url - #{url} is invalid"
-            StraightServer.logger.info "Proceeding via http protocol"
+            StraightServer.logger.info "Looks like callback_url - #{url} is invalid\nProceeding via http protocol "
             url = 'http://' + url
             uri = URI.parse("#{url}#{url.include?('?') ? '&' : '?'}#{order.to_http_params}#{callback_data}")
           end
