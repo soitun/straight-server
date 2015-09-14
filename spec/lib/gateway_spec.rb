@@ -179,6 +179,20 @@ RSpec.describe StraightServer::Gateway do
       @gateway.order_status_changed(@order)
     end
 
+    it "tries to make request via http if callback_url is invalid" do
+      StraightServer::GatewayModule::CALLBACK_URL_ATTEMPT_TIMEFRAME = 1
+      uri =
+        '/?with=params&order_id=1&amount=10&amount_in_btc=0.0000001&amount_paid_in_btc=0.0&status=1&' \
+        'address=address_1&tid=tid1&keychain_id=1&last_keychain_id=0&after_payment_redirect_to=' \
+        'http://localhost:3000/my_app/my_own_page&auto_redirect=true'
+      signature = 'fq4NnZqrig2GAqkDkEdJ/2nf5Hcp4WqHlApyOEW0JMo5cSCkI+YZ6Mua053s49dUUafJNwWxaSo1VPIfNQ4g/w=='
+
+      stub = stub_request(:get, "http://new_url#{uri}").with(headers: {'X-Signature' => signature}).to_return(status: 200, body: '')
+      @order.callback_url = 'new_url?with=params'
+      @gateway.order_status_changed(@order)
+      expect(stub).to have_been_requested
+    end
+
     it "does not raise error when making callback with invalid uri" do
       uri =
         '/?with=params&order_id=1&amount=10&amount_in_btc=0.0000001&amount_paid_in_btc=0.0&status=1&' \
